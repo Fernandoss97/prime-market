@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Seller\Products;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -21,6 +22,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/profile', Profile::class)->name('profile.edit');
     Route::get('settings/password', Password::class)->name('user-password.edit');
     Route::get('settings/appearance', Appearance::class)->name('appearance.edit');
+    Route::get('seller/products', Products::class)->name('seller.products');
+
 
     Route::get('settings/two-factor', TwoFactor::class)
         ->middleware(
