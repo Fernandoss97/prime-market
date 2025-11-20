@@ -52,25 +52,25 @@
         </x-mary-card>
     </div>
 
+    @php
+        $users = [
+            ['id' => 1, 'name' => 'Joe'],
+            ['id' => 2, 'name' => 'Mary'],
+            ['id' => 3, 'name' => 'John'],
+            ['id' => 4, 'name' => 'Alice'],
+            ['id' => 5, 'name' => 'Bob'],
+            ['id' => 6, 'name' => 'Charlie'],
+        ];
+    @endphp
+
     <!-- Filters -->
     <x-mary-card class="border border-base-300 shadow-sm dark:border-base-content/10">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
             <x-mary-input label="Buscar" icon="o-magnifying-glass" placeholder="Buscar por nome ou SKU..." />
 
-            <x-mary-select label="Categoria">
-                <option value="">Todas</option>
-                <option value="camisetas">Camisetas</option>
-                <option value="calcas">Calças</option>
-                <option value="acessorios">Acessórios</option>
-            </x-mary-select>
+            <x-mary-select label="Categoria" :options="$users" />
+            <x-mary-select label="Status" :options="$users" />
 
-            <x-mary-select label="Status">
-                <option value="">Todos</option>
-                <option value="ativo">Ativos</option>
-                <option value="inativo">Inativos</option>
-                <option value="baixo-estoque">Baixo estoque</option>
-                <option value="fora-de-estoque">Fora de estoque</option>
-            </x-mary-select>
         </div>
     </x-mary-card>
 
