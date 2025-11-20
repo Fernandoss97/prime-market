@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import '../../vendor/livewire/flux/dist/flux.css';
+@import "tailwindcss";
+@import "../../vendor/livewire/flux/dist/flux.css";
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -9,7 +9,9 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 
     --color-zinc-50: #fafafa;
     --color-zinc-100: #f5f5f5;
@@ -37,7 +39,6 @@
 }
 
 @layer base {
-
     *,
     ::after,
     ::before,
@@ -52,20 +53,20 @@
 }
 
 [data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+    @apply !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+    outline: none;
+    border-color: oklch(var(--p) / 0.5);
+    box-shadow: 0 0 0 1px oklch(var(--p) / 0.2);
 }
 
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
-
-
 
 /**
     The lines above are intact.
@@ -74,7 +75,36 @@ select:focus[data-flux-control] {
 
 /** daisyUI */
 @plugin "daisyui" {
-    themes: light --default, dark --prefersdark;
+    themes: light, dark;
+}
+
+/* Customização de cores DaisyUI */
+:root {
+    /* Primary - Azul */
+    --p: 40.6 88% 63.6%; /* hsl(217, 91%, 60%) - #3B82F6 (blue-500) */
+    --pc: 0 0% 100%; /* Texto sobre primary (branco) */
+
+    /* Secondary - Roxo */
+    --s: 271 81% 56%; /* hsl(271, 81%, 56%) - #A855F7 (purple-500) */
+    --sc: 0 0% 100%; /* Texto sobre secondary (branco) */
+
+    /* Accent - Verde */
+    --a: 142 76% 36%; /* hsl(142, 76%, 36%) - #10B981 (green-600) */
+    --ac: 0 0% 100%; /* Texto sobre accent (branco) */
+}
+
+.dark {
+    /* Primary no dark mode */
+    --p: 217 91% 60%;
+    --pc: 0 0% 100%;
+
+    /* Secondary no dark mode */
+    --s: 271 81% 56%;
+    --sc: 0 0% 100%;
+
+    /* Accent no dark mode */
+    --a: 142 76% 36%;
+    --ac: 0 0% 100%;
 }
 
 /* maryUI */
@@ -89,9 +119,60 @@ select:focus[data-flux-control] {
 */
 
 .mary-table-pagination span[aria-current="page"] > span {
-    @apply bg-primary text-base-100
+    @apply bg-primary text-base-100;
 }
 
 .mary-table-pagination button {
-    @apply cursor-pointer
+    @apply cursor-pointer;
+}
+
+/**
+* Estilos padrão para componentes Mary UI
+* Adiciona bordas e sombras sutis para melhor contraste
+*/
+
+@layer components {
+    /* Cards */
+    .card {
+        border: 1px solid oklch(var(--b3, var(--b2)) / 0.2);
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    }
+
+    /* Buttons - primary com shadow */
+    .btn-primary {
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    }
+
+    /* Buttons ghost com shadow sutil */
+    .btn-ghost {
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    }
+
+    /* Inputs e Selects */
+    .input,
+    .select,
+    .textarea {
+        border-color: oklch(var(--b3, var(--b2)) / 0.2);
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    }
+
+    /* Focus state para inputs - borda sutil */
+    .input:focus,
+    .select:focus,
+    .textarea:focus {
+        outline: none;
+        border-color: oklch(var(--p) / 0.5);
+        box-shadow: 0 0 0 1px oklch(var(--p) / 0.2);
+    }
+
+    /* Tabelas */
+    table thead tr {
+        border-bottom: 1px solid oklch(var(--b3, var(--b2)) / 0.2);
+    }
+
+    table tbody {
+        & > tr {
+            border-bottom: 1px solid oklch(var(--b3, var(--b2)) / 0.2);
+        }
+    }
 }
