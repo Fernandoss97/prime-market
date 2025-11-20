@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\ProductStatusEnum;
 use App\Models\Category;
 use App\Models\Seller;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -27,6 +28,12 @@ class ProductFactory extends Factory
             'stock' => $this->faker->numberBetween(0, 100),
             'seller_id' => Seller::factory(),
             'category_id' => Category::factory(),
+            'is_active' => $this->faker->boolean(),
+            'status' => $this->faker->randomElement([
+                ProductStatusEnum::AVAILABLE(),
+                ProductStatusEnum::LOWSTOCK(),
+                ProductStatusEnum::OUTOFSTOCK(),
+            ]),
         ];
     }
 }

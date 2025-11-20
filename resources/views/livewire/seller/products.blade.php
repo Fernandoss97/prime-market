@@ -86,92 +86,53 @@
                         <th class="px-4 py-3">Preço</th>
                         <th class="px-4 py-3">Estoque</th>
                         <th class="px-4 py-3">Status</th>
+                        <th class="px-4 py-3">Ativo</th>
                         <th class="px-4 py-3 text-right">Ações</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-base-300 dark:divide-base-content/10">
-                    <!-- Row 1 -->
-                    <tr>
-                        <td class="px-4 py-4">
-                            <div class="font-medium">Camiseta Básica</div>
-                            <div class="text-xs text-gray-500">SKU: CAM-001</div>
-                        </td>
-                        <td class="px-4 py-4">Camisetas</td>
-                        <td class="px-4 py-4">R$ 79,90</td>
-                        <td class="px-4 py-4">42</td>
-                        <td class="px-4 py-4">
-                            <span
-                                class="inline-flex items-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-700">Ativo</span>
-                        </td>
-                        <td class="px-4 py-4 text-right">
-                            <div class="inline-flex items-center gap-2">
-                                <x-mary-button icon="o-eye" class="btn-ghost btn-sm" />
-                                <x-mary-button icon="o-pencil-square" class="btn-ghost btn-sm" />
-                                <x-mary-button icon="o-ellipsis-vertical" class="btn-ghost btn-sm" />
-                            </div>
-                        </td>
-                    </tr>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td class="px-4 py-4">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                                        class="h-15 w-15 rounded-md object-cover" />
+                                    <div>
+                                        <div class="font-medium">{{ $product->name }}</div>
+                                        <div class="text-xs text-gray-500">{{ $product->slug }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-4">{{ $product->category->name }}</td>
+                            <td class="px-4 py-4">R$ {{ number_format($product->price, 2, ',', '.') }}</td>
+                            <td class="px-4 py-4">{{ $product->stock }}</td>
+                            <td class="px-4 py-4">
+                                @if ($product->status->equals(\App\Enums\ProductStatusEnum::available()))
+                                    <x-mary-badge value="Disponível" class="badge-success badge-outline" />
+                                @elseif($product->status->equals(\App\Enums\ProductStatusEnum::lowStock()))
+                                    <x-mary-badge value="Estoque baixo" class="badge-warning badge-outline" />
+                                @else
+                                    <x-mary-badge value="Sem estoque" class="badge-error badge-outline" />
+                                @endif
+                            </td>
+                            <td class="px-4 py-4">
+                                @if ($product->is_active)
+                                    <x-mary-badge value="Ativo" class="badge-success badge-outline" />
+                                @else
+                                    <x-mary-badge value="Inativo" class="badge-error badge-outline" />
+                                @endif
+                            </td>
+                            <td class="px-4 py-4 text-right">
+                                <div class="inline-flex items-center gap-2">
 
-                    <!-- Row 2 -->
-                    <tr>
-                        <td class="px-4 py-4">
-                            <div class="font-medium">Calça Jeans Slim</div>
-                            <div class="text-xs text-gray-500">SKU: CAL-023</div>
-                        </td>
-                        <td class="px-4 py-4">Calças</td>
-                        <td class="px-4 py-4">R$ 159,90</td>
-                        <td class="px-4 py-4">4</td>
-                        <td class="px-4 py-4">
-                            <span
-                                class="inline-flex items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700">Baixo
-                                estoque</span>
-                        </td>
-                        <td class="px-4 py-4 text-right">
-                            <div class="inline-flex items-center gap-2">
-                                <x-mary-button icon="o-eye" class="btn-ghost btn-sm" />
-                                <x-mary-button icon="o-pencil-square" class="btn-ghost btn-sm" />
-                                <x-mary-button icon="o-ellipsis-vertical" class="btn-ghost btn-sm" />
-                            </div>
-                        </td>
-                    </tr>
-
-                    <!-- Row 3 -->
-                    <tr>
-                        <td class="px-4 py-4">
-                            <div class="font-medium">Boné Trucker</div>
-                            <div class="text-xs text-gray-500">SKU: ACR-112</div>
-                        </td>
-                        <td class="px-4 py-4">Acessórios</td>
-                        <td class="px-4 py-4">R$ 59,90</td>
-                        <td class="px-4 py-4">0</td>
-                        <td class="px-4 py-4">
-                            <span
-                                class="inline-flex items-center rounded-full bg-rose-100 px-2.5 py-0.5 text-xs font-medium text-rose-700">Fora
-                                de estoque</span>
-                        </td>
-                        <td class="px-4 py-4 text-right">
-                            <div class="inline-flex items-center gap-2">
-                                <x-mary-button icon="o-eye" class="btn-ghost btn-sm" />
-                                <x-mary-button icon="o-pencil-square" class="btn-ghost btn-sm" />
-                                <x-mary-button icon="o-ellipsis-vertical" class="btn-ghost btn-sm" />
-                            </div>
-                        </td>
-                    </tr>
+                                    <x-mary-button icon="o-ellipsis-vertical" class="btn-ghost btn-sm" />
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
-
-        <!-- Pagination -->
-        <div
-            class="flex items-center justify-between border-t border-base-300 px-4 py-3 text-sm text-gray-600 dark:border-base-content/10 dark:text-gray-400">
-            <div>Mostrando 1 a 10 de 50 resultados</div>
-            <div class="flex items-center gap-1">
-                <x-mary-button class="btn-ghost btn-sm shadow-sm" icon="o-chevron-left" />
-                <x-mary-button class="btn-ghost btn-sm shadow-sm">1</x-mary-button>
-                <x-mary-button class="btn-ghost btn-sm shadow-sm">2</x-mary-button>
-                <x-mary-button class="btn-ghost btn-sm shadow-sm">3</x-mary-button>
-                <x-mary-button class="btn-ghost btn-sm shadow-sm" icon="o-chevron-right" />
-            </div>
-        </div>
+        {{ $products->links() }}
     </x-mary-card>
 </div>

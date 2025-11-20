@@ -20,6 +20,7 @@
         "livewire/volt": "^1.7.0",
         "lorisleiva/laravel-actions": "^2.9",
         "robsontenorio/mary": "^2.4",
+        "spatie/laravel-enum": "^3.2",
         "spatie/laravel-permission": "^6.23"
     },
     "require-dev": {

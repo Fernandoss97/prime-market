@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price', 10, 2);
             $table->integer('stock');
+            $table->enum('status', ['available', 'low_stock', 'out_of_stock'])->default('available');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
