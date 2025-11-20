@@ -23,7 +23,6 @@ class CreateSeller
         ];
     }
 
-    // IMPORTANTE: receba somente os dados já validados
     public function handle(array $data): Seller
     {
         $validator = Validator::make($data, $this->rules());
