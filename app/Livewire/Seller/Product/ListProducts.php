@@ -14,10 +14,23 @@ class ListProducts extends Component
 {
     use WithPagination;
 
+    public $totalProducts;
+    public $totalActiveProducts;
+    public $totalLowStockProducts;
+    public $totalOutOfStockProducts;
+
+    public function mount()
+    {
+        //mover para um service fazendo uma query única
+        $this->totalProducts = Auth::user()->seller->products()->count();
+        $this->totalActiveProducts = Auth::user()->seller->products()->where('is_active', true)->count();
+        $this->totalLowStockProducts = Auth::user()->seller->products()->where('stock', '<', 10)->count();
+        $this->totalOutOfStockProducts = Auth::user()->seller->products()->where('stock', 0)->count();
+    }
+
     #[On('product-created')]
     public function refreshTable()
     {
-        // Garante que volte para a primeira página e recarregue os dados
         $this->resetPage();
     }
 

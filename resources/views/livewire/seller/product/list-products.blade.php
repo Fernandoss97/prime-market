@@ -16,7 +16,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <div class="text-sm text-gray-500 dark:text-gray-400">Total de produtos</div>
-                    <div class="text-2xl font-semibold">128</div>
+                    <div class="text-2xl font-semibold">{{ $totalProducts }}</div>
                 </div>
                 <x-mary-icon name="o-cube" class="h-10 w-10 text-primary" />
             </div>
@@ -26,7 +26,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <div class="text-sm text-gray-500 dark:text-gray-400">Ativos</div>
-                    <div class="text-2xl font-semibold">103</div>
+                    <div class="text-2xl font-semibold">{{ $totalActiveProducts }}</div>
                 </div>
                 <x-mary-icon name="o-check-circle" class="h-10 w-10 text-emerald-500" />
             </div>
@@ -36,7 +36,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <div class="text-sm text-gray-500 dark:text-gray-400">Baixo estoque</div>
-                    <div class="text-2xl font-semibold">12</div>
+                    <div class="text-2xl font-semibold">{{ $totalLowStockProducts }}</div>
                 </div>
                 <x-mary-icon name="o-exclamation-triangle" class="h-10 w-10 text-amber-500" />
             </div>
@@ -46,31 +46,20 @@
             <div class="flex items-center justify-between">
                 <div>
                     <div class="text-sm text-gray-500 dark:text-gray-400">Fora de estoque</div>
-                    <div class="text-2xl font-semibold">13</div>
+                    <div class="text-2xl font-semibold">{{ $totalOutOfStockProducts }}</div>
                 </div>
                 <x-mary-icon name="o-x-circle" class="h-10 w-10 text-rose-500" />
             </div>
         </x-mary-card>
     </div>
 
-    @php
-        $users = [
-            ['id' => 1, 'name' => 'Joe'],
-            ['id' => 2, 'name' => 'Mary'],
-            ['id' => 3, 'name' => 'John'],
-            ['id' => 4, 'name' => 'Alice'],
-            ['id' => 5, 'name' => 'Bob'],
-            ['id' => 6, 'name' => 'Charlie'],
-        ];
-    @endphp
-
     <!-- Filters -->
     <x-mary-card class="border border-base-300 shadow-sm dark:border-base-content/10">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
             <x-mary-input label="Buscar" icon="o-magnifying-glass" placeholder="Buscar por nome ou SKU..." />
 
-            <x-mary-select label="Categoria" :options="$users" />
-            <x-mary-select label="Status" :options="$users" />
+            <x-mary-select label="Categoria" :options="$categories" />
+            <x-mary-select label="Status" :options="$categories" />
 
         </div>
     </x-mary-card>

@@ -48,8 +48,8 @@
                         <x-slot:actions>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <x-mary-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="Sair"
-                                    type="submit" />
+                                <x-mary-button icon="o-arrow-right-on-rectangle" class="btn-circle btn-ghost btn-xs"
+                                    tooltip-left="Sair" type="submit" />
                             </form>
                         </x-slot:actions>
                     </x-mary-list-item>
@@ -60,6 +60,7 @@
                 <x-mary-menu-item title="Pedidos" icon="o-shopping-cart" />
                 <x-mary-menu-item title="Produtos" icon="o-shopping-bag" :link="route('seller.products')" />
                 <x-mary-menu-item title="Carteira" icon="o-wallet" />
+                <x-mary-menu-item title="Avaliações" icon="o-hand-thumb-up" />
                 <x-mary-menu-item title="Mensagens" icon="o-chat-bubble-bottom-center-text" />
                 <x-mary-menu-sub title="Configurações" icon="o-cog-6-tooth">
                     <x-mary-menu-item title="Perfil" icon="o-user" :link="route('profile.edit')" />

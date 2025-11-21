@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'id' => 1,
             'name' => 'User 1',
             'email' => 'fernando@teste.com',
-            'password' => bcrypt('12345678'),
+            'password' => Hash::make('12345678'),
             'email_verified_at' => null,
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
