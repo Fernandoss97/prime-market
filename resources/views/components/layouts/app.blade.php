@@ -6,7 +6,7 @@
 </head>
 
 <body class="min-h-screen font-sans antialiased bg-base-200">
-
+    <x-mary-toast />
     {{-- NAVBAR mobile only --}}
     <x-mary-nav sticky class="lg:hidden">
         <x-slot:brand>
@@ -56,10 +56,11 @@
 
                     <x-mary-menu-separator />
                 @endif
-
-
+                <x-mary-menu-item title="Dashboard" icon="s-presentation-chart-bar" />
+                <x-mary-menu-item title="Pedidos" icon="o-shopping-cart" />
                 <x-mary-menu-item title="Produtos" icon="o-shopping-bag" :link="route('seller.products')" />
-
+                <x-mary-menu-item title="Carteira" icon="o-wallet" />
+                <x-mary-menu-item title="Mensagens" icon="o-chat-bubble-bottom-center-text" />
                 <x-mary-menu-sub title="Configurações" icon="o-cog-6-tooth">
                     <x-mary-menu-item title="Perfil" icon="o-user" :link="route('profile.edit')" />
                 </x-mary-menu-sub>

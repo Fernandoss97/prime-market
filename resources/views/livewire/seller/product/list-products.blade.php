@@ -6,7 +6,8 @@
             <p class="text-gray-500 dark:text-gray-400">Gerencie seus produtos e estoque</p>
         </div>
 
-        <x-mary-button icon="o-plus" label="Novo produto" class="btn-primary" />
+        <x-mary-button icon="o-plus" label="Novo produto" class="btn-primary"
+            wire:click="$dispatch('open-create-modal')" />
     </div>
 
     <!-- Stats Cards -->
@@ -135,4 +136,7 @@
         </div>
         {{ $products->links() }}
     </x-mary-card>
+
+    <!-- Modal de Criação de Produto -->
+    <livewire:seller.product.components.create-product-modal :categories="$categories" />
 </div>
