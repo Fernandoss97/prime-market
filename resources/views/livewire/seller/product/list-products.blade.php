@@ -58,8 +58,9 @@
         <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
             <x-mary-input label="Buscar" icon="o-magnifying-glass" placeholder="Buscar por nome ou SKU..." />
 
-            <x-mary-select label="Categoria" :options="$categories" />
-            <x-mary-select label="Status" :options="$categories" />
+            <x-mary-select label="Categoria" :options="$this->categories" placeholder="Selecione uma categoria"
+                placeholder-value="" />
+            <x-mary-select label="Status" :options="$statusOptions" placeholder="Selecione um status" placeholder-value="" />
 
         </div>
     </x-mary-card>
@@ -98,11 +99,14 @@
                             <td class="px-4 py-4">{{ $product->stock }}</td>
                             <td class="px-4 py-4">
                                 @if ($product->status->equals(\App\Enums\ProductStatusEnum::available()))
-                                    <x-mary-badge value="Disponível" class="badge-success badge-outline" />
+                                    <x-mary-badge value="Disponível"
+                                        class="badge-success badge-outline whitespace-nowrap" />
                                 @elseif($product->status->equals(\App\Enums\ProductStatusEnum::lowStock()))
-                                    <x-mary-badge value="Estoque baixo" class="badge-warning badge-outline" />
+                                    <x-mary-badge value="Estoque baixo"
+                                        class="badge-warning badge-outline whitespace-nowrap" />
                                 @else
-                                    <x-mary-badge value="Sem estoque" class="badge-error badge-outline" />
+                                    <x-mary-badge value="Sem estoque"
+                                        class="badge-error badge-outline whitespace-nowrap" />
                                 @endif
                             </td>
                             <td class="px-4 py-4">
@@ -127,5 +131,5 @@
     </x-mary-card>
 
     <!-- Modal de Criação de Produto -->
-    <livewire:seller.product.components.create-product-modal :categories="$categories" />
+    <livewire:seller.product.components.create-product-modal :categories="$this->categories" />
 </div>
