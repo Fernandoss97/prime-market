@@ -14,6 +14,7 @@ class CreateProductModal extends Component
     use Toast;
 
     public string $name = '';
+    public string $brand = '';
     public ?int $category_id = null;
     public float $price = 0;
     public int $stock = 0;
@@ -33,6 +34,7 @@ class CreateProductModal extends Component
     {
         $validated = $this->validate([
             'name' => 'required|string|max:255',
+            'brand' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
@@ -41,7 +43,7 @@ class CreateProductModal extends Component
 
         Product::create([
             'name' => $validated['name'],
-            'slug' => Str::slug($validated['name']),
+            'brand' => $validated['brand'],
             'category_id' => $validated['category_id'],
             'price' => $validated['price'],
             'stock' => $validated['stock'],
@@ -50,7 +52,7 @@ class CreateProductModal extends Component
         ]);
 
         $this->open = false;
-        $this->reset(['name', 'category_id', 'price', 'stock', 'description']);
+        $this->reset(['name', 'category_id', 'price', 'stock', 'description', 'brand']);
         $this->success('Produto criado com sucesso!');
         $this->dispatch('product-created');
     }

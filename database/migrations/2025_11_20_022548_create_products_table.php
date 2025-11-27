@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('seller_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->string('name');
+            $table->string('brand');
             $table->string('slug')->unique();
             $table->text('description');
             $table->decimal('price', 10, 2);

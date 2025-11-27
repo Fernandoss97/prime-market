@@ -20,9 +20,8 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            // Define default attributes for Product model
             'name' => $this->faker->word(),
-            'slug' => $this->faker->unique()->slug(),
+            'brand' => $this->faker->company(),
             'description' => $this->faker->paragraph(),
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'stock' => $this->faker->numberBetween(0, 100),

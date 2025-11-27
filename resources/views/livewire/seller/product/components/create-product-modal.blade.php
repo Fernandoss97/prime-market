@@ -1,8 +1,9 @@
-<x-mary-modal wire:model="open" title="Novo Produto" class="backdrop-blur">
+<x-mary-modal wire:model="open" title="Novo Produto" class="backdrop-blur" persistent>
     <div class="space-y-4">
         <!-- Nome -->
         <x-mary-input wire:model="name" label="Nome do Produto" placeholder="Digite o nome do produto"
             hint="Escolha um nome descritivo e único" />
+        <x-mary-input wire:model="brand" label="Marca do Produto" placeholder="Digite a marca do produto" />
 
         <!-- Categoria -->
         <x-mary-select wire:model="category_id" label="Categoria" :options="$categories"

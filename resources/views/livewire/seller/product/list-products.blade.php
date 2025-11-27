@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-4 py-4">{{ $product->category->name }}</td>
+                            <td class="px-4 py-4">{{ ucfirst($product->category->name) }}</td>
                             <td class="px-4 py-4">R$ {{ number_format($product->price, 2, ',', '.') }}</td>
                             <td class="px-4 py-4">{{ $product->stock }}</td>
                             <td class="px-4 py-4">
