@@ -55,12 +55,15 @@
 
     <!-- Filters -->
     <x-mary-card class="border border-base-300 shadow-sm dark:border-base-content/10">
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-            <x-mary-input label="Buscar" icon="o-magnifying-glass" placeholder="Buscar por nome ou SKU..." />
-
-            <x-mary-select label="Categoria" :options="$this->categories" placeholder="Selecione uma categoria"
-                placeholder-value="" />
-            <x-mary-select label="Status" :options="$statusOptions" placeholder="Selecione um status" placeholder-value="" />
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
+            <x-mary-input label="Buscar" icon="o-magnifying-glass" placeholder="Buscar por nome ou Slug..."
+                wire:model.live="search" />
+            <x-mary-select label="Categoria" :options="$this->categories" placeholder="Todos" placeholder-value=""
+                wire:model.live="category" />
+            <x-mary-select label="Status" :options="$statusOptions" placeholder="Todos" placeholder-value=""
+                wire:model.live="status" />
+            <x-mary-select label="Ativo" :options="$activeOptions" placeholder="Todos" placeholder-value=""
+                wire:model.live="isActive" />
 
         </div>
     </x-mary-card>
