@@ -30,7 +30,7 @@
             class="bg-base-100 border-r border-base-300 dark:border-base-content/10">
 
             {{-- BRAND --}}
-            <div class="ml-5 pt-5 mb-5">
+            <div class="ml-5 pt-5">
                 <a href="{{ route('dashboard') }}" wire:navigate>
                     <x-app-logo />
                 </a>

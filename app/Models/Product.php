@@ -10,7 +10,6 @@ use Spatie\Sluggable\SlugOptions;
 
 class Product extends Model
 {
-    /** @use HasFactory<\Database\Factories\ProductFactory> */
     use HasFactory, HasSlug;
 
     protected $casts = [
@@ -39,6 +38,8 @@ class Product extends Model
     {
         return 'slug';
     }
+
+    //atualizar status baseado no stock
 
     public function category()
     {
