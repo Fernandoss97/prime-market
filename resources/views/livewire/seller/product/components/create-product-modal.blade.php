@@ -1,5 +1,5 @@
-<x-mary-modal wire:model="open" title="Novo Produto" class="backdrop-blur" persistent>
-    <div class="space-y-4">
+<x-mary-modal wire:model="open" title="Novo Produto" class="backdrop-blur  " persistent>
+    <div class="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
         <!-- Nome -->
         <x-mary-input wire:model="name" label="Nome do Produto" placeholder="Digite o nome do produto"
             hint="Escolha um nome descritivo e único" />
@@ -11,8 +11,8 @@
 
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <!-- Preço -->
-            <x-mary-input wire:model="price" label="Preço" type="number" step="0.01" min="0"
-                placeholder="0,00" prefix="R$" />
+            <x-mary-input wire:model="price" label="Preço" step="0.01" min="0" placeholder="0,00"
+                prefix="R$" locale="pt-BR" money />
 
             <!-- Quantidade em Estoque -->
             <x-mary-input wire:model="stock" label="Quantidade em Estoque" type="number" min="0"
@@ -24,21 +24,12 @@
             hint="Inclua detalhes importantes sobre o produto" />
 
         <!-- Upload de Imagem -->
-        <div>
-            <label class="block text-sm font-medium mb-2">Imagem do Produto</label>
-            <div class="flex items-center justify-center w-full">
-                <label
-                    class="flex flex-col items-center justify-center w-full h-32 border-2 border-base-300 border-dashed rounded-lg cursor-pointer hover:bg-base-200 dark:border-base-content/10 dark:hover:bg-base-200/50">
-                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                        <x-mary-icon name="o-cloud-arrow-up" class="w-8 h-8 mb-2 text-gray-500" />
-                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                            <span class="font-semibold">Clique para enviar</span> ou arraste e solte
-                        </p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG ou WEBP (MAX. 2MB)</p>
-                    </div>
-                    <input type="file" class="hidden" accept="image/*" />
-                </label>
-            </div>
+        <label class="mb-2 block text-sm font-medium text-base-content/70">Imagem do Produto</label>
+        <div class="flex items-center justify-center">
+            <x-mary-file wire:model="image" accept="image/png" crop-after-change change-text="Alterar Imagem"
+                crop-text="Cortar" crop-title-text="Cortar Imagem" crop-cancel-text="Cancelar" crop-save-text="Cortar">
+                <img src="{{ '/add-image-placeholder.jpg' }}" class="h-25 rounded-lg" />
+            </x-mary-file>
         </div>
     </div>
 

@@ -4,29 +4,37 @@ namespace App\Livewire\Seller\Product\Components;
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Mary\Traits\Toast;
 
 class CreateProductModal extends Component
 {
-    use Toast;
+    use Toast, WithFileUploads;
 
     public string $name = '';
+
     public string $brand = '';
+
     public ?int $category_id = null;
+
     public float $price = 0;
+
     public int $stock = 0;
+
     public string $description = '';
 
+    public $image;
+
     public $open = false;
+
     public $categories = [];
 
     #[On('open-create-modal')]
     public function openModal()
     {
-        $this->reset(['name', 'category_id', 'price', 'stock', 'description']);
+        $this->reset(['name', 'brand', 'category_id', 'price', 'stock', 'description', 'image']);
         $this->open = true;
     }
 
@@ -39,7 +47,13 @@ class CreateProductModal extends Component
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
             'description' => 'nullable|string|max:1000',
+            'image' => 'nullable|image|max:2048',
         ]);
+
+        $imagePath = null;
+        if ($this->image) {
+            $imagePath = $this->image->store(path: 'products');
+        }
 
         Product::create([
             'name' => $validated['name'],
@@ -48,11 +62,12 @@ class CreateProductModal extends Component
             'price' => $validated['price'],
             'stock' => $validated['stock'],
             'description' => $validated['description'],
+            'image' => $imagePath,
             'seller_id' => Auth::user()->seller->id,
         ]);
 
         $this->open = false;
-        $this->reset(['name', 'category_id', 'price', 'stock', 'description', 'brand']);
+        $this->reset(['name', 'brand', 'category_id', 'price', 'stock', 'description', 'image']);
         $this->success('Produto criado com sucesso!');
         $this->dispatch('product-created');
     }

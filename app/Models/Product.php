@@ -12,6 +12,20 @@ class Product extends Model
 {
     use HasFactory, HasSlug;
 
+    protected $fillable = [
+        'name',
+        'brand',
+        'slug',
+        'description',
+        'image',
+        'price',
+        'stock',
+        'status',
+        'is_active',
+        'seller_id',
+        'category_id',
+    ];
+
     protected $casts = [
         'status' => ProductStatusEnum::class,
     ];
@@ -39,7 +53,7 @@ class Product extends Model
         return 'slug';
     }
 
-    //atualizar status baseado no stock
+    // atualizar status baseado no stock
 
     public function category()
     {

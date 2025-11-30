@@ -89,8 +89,15 @@
                         <tr>
                             <td class="px-4 py-4">
                                 <div class="flex items-center gap-3">
-                                    <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                                        class="h-15 w-15 rounded-md object-cover" />
+
+                                    @if ($product->image)
+                                        <img src="{{ $product->image }}"
+                                            class="h-15 w-15 rounded-md object-cover bg-gray-100" />
+                                    @else
+                                        <div class="flex h-15 w-15 items-center justify-center rounded-md ">
+                                            @svg('heroicon-s-cube', 'h-8 w-8')
+                                        </div>
+                                    @endif
                                     <div>
                                         <div class="font-medium">{{ $product->name }}</div>
                                         <div class="text-xs text-gray-500">{{ $product->slug }}</div>
