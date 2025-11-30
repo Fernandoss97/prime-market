@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\ProductStatusEnum;
+use App\Models\Scopes\SellerProductScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
@@ -11,20 +12,6 @@ use Spatie\Sluggable\SlugOptions;
 class Product extends Model
 {
     use HasFactory, HasSlug;
-
-    protected $fillable = [
-        'name',
-        'brand',
-        'slug',
-        'description',
-        'image',
-        'price',
-        'stock',
-        'status',
-        'is_active',
-        'seller_id',
-        'category_id',
-    ];
 
     protected $casts = [
         'status' => ProductStatusEnum::class,
@@ -53,10 +40,20 @@ class Product extends Model
         return 'slug';
     }
 
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new SellerProductScope);
+    }
+
     // atualizar status baseado no stock
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
     }
 }

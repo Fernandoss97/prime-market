@@ -7,6 +7,8 @@ use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,9 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(1)->create([
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+
+        $sellerRole = Role::create(['name' => 'seller']);
+
+        $user = User::factory()->create([
             'id' => 1,
-            'name' => 'User 1',
+            'name' => 'Fernando Teste',
             'email' => 'fernando@teste.com',
             'password' => Hash::make('12345678'),
             'email_verified_at' => null,
@@ -26,9 +32,12 @@ class DatabaseSeeder extends Seeder
             'two_factor_confirmed_at' => null,
             'remember_token' => null,
         ]);
-        Seller::factory(1)->create([
-            'user_id' => User::first()->id,
-            'store_name' => 'Seller user1 ',
+
+        $user->assignRole($sellerRole);
+
+        Seller::factory()->create([
+            'user_id' => $user->id,
+            'store_name' => 'Seller Fernando Teste',
         ]);
         Product::factory(15)->create([
             'seller_id' => Seller::first()->id,

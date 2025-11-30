@@ -3,8 +3,8 @@
 namespace App\Livewire\Seller\Product;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Services\StatsService;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -15,13 +15,18 @@ class ListProducts extends Component
     use WithPagination;
 
     public $totalProducts;
+
     public $totalActiveProducts;
+
     public $totalLowStockProducts;
+
     public $totalOutOfStockProducts;
+
     public $activeOptions = [
         ['id' => '1', 'name' => 'Ativo'],
         ['id' => '0', 'name' => 'Inativo'],
     ];
+
     public $statusOptions = [
         ['id' => 'available', 'name' => 'Disponível'],
         ['id' => 'low_stock', 'name' => 'Estoque Baixo'],
@@ -30,10 +35,13 @@ class ListProducts extends Component
 
     #[Url]
     public $search = '';
+
     #[Url]
     public $category = '';
+
     #[Url]
     public $isActive = '';
+
     #[Url]
     public $status = '';
 
@@ -44,7 +52,6 @@ class ListProducts extends Component
         $this->fill($stats);
     }
 
-
     #[On('product-created')]
     public function refreshTable(StatsService $stats)
     {
@@ -54,21 +61,19 @@ class ListProducts extends Component
         $this->fill($newStats);
     }
 
-
     public function getCategoriesProperty()
     {
         return Category::orderBy('name')->get();
     }
 
-
     public function render()
     {
-        $query = Auth::user()->seller->products()->with('category');
+        $query = Product::query()->with('category');
 
         if ($this->search) {
             $query->where(function ($q) {
-                $q->where('name', 'like', '%' . $this->search . '%')
-                    ->orWhere('slug', 'like', '%' . $this->search . '%');
+                $q->where('name', 'like', '%'.$this->search.'%')
+                    ->orWhere('slug', 'like', '%'.$this->search.'%');
             });
         }
 
@@ -85,7 +90,7 @@ class ListProducts extends Component
         }
 
         return view('livewire.seller.product.list-products', [
-            'products' => $query->orderBy('created_at', 'desc')->paginate(10)
+            'products' => $query->orderBy('created_at', 'desc')->paginate(10),
         ]);
     }
 }
