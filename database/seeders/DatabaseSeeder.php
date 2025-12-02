@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Seller;
 use App\Models\User;
@@ -39,6 +40,12 @@ class DatabaseSeeder extends Seeder
             'user_id' => $user->id,
             'store_name' => 'Seller Fernando Teste',
         ]);
+
+        Customer::factory()->create([
+            'user_id' => $user->id,
+            'phone' => '123-456-7890',
+        ]);
+
         Product::factory(15)->create([
             'seller_id' => Seller::first()->id,
         ]);
@@ -47,6 +54,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             SellerSeeder::class,
             ProductSeeder::class,
+            CustomerSeeder::class,
         ]);
     }
 }
