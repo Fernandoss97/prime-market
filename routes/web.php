@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Home\HomePage;
 use App\Livewire\Seller\Product\ListProducts;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -25,6 +26,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:seller'])->group(function () {
         Route::get('seller/products', ListProducts::class)->name('seller.products');
+    });
+
+    Route::prefix('store')->group(function () {
+        Route::get('/home', HomePage::class)->name('store.home.page');
     });
 
     Route::get('settings/two-factor', TwoFactor::class)
