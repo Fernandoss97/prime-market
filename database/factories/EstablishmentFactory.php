@@ -25,27 +25,27 @@ class EstablishmentFactory extends Factory
 
             // Basic info
             'name' => $this->faker->company(),
-            'description' => $this->faker->optional()->paragraph(),
-            'cnpj' => $this->faker->optional()->numerify('##.###.###/####-##'),
-            'phone' => $this->faker->optional()->phoneNumber(),
-            'email' => $this->faker->optional()->companyEmail(),
-            'website' => $this->faker->optional()->url(),
+            'description' => $this->faker->paragraph(),
+            'cnpj' => $this->faker->numerify('##.###.###/####-##'),
+            'phone' => $this->faker->phoneNumber(),
+            'email' => $this->faker->companyEmail(),
+            'website' => $this->faker->url(),
 
             // Address
             'address' => $this->faker->streetAddress(),
             'number' => (string) $this->faker->numberBetween(1, 9999),
-            'complement' => $this->faker->optional()->secondaryAddress(),
-            'neighborhood' => $this->faker->optional()->citySuffix(),
+            'complement' => $this->faker->secondaryAddress(),
+            'neighborhood' => $this->faker->citySuffix(),
             'city' => $this->faker->city(),
             'state' => $this->faker->stateAbbr(),
             'zip_code' => $this->faker->postcode(),
-            'latitude' => $this->faker->optional()->latitude(-33.0, 5.0),
-            'longitude' => $this->faker->optional()->longitude(-74.0, -34.0),
+            'latitude' => $this->faker->latitude(-33.0, 5.0),
+            'longitude' => $this->faker->longitude(-74.0, -34.0),
 
             // Additional info
-            'logo' => $this->faker->optional()->imageUrl(300, 300, 'business', true),
-            'cover_photo' => $this->faker->optional()->imageUrl(1200, 400, 'business', true),
-            'opening_hours' => $this->faker->optional()->randomElement([
+            'logo' => $this->faker->imageUrl(300, 300, 'business', true),
+            'cover_photo' => $this->faker->imageUrl(1200, 400, 'business', true),
+            'opening_hours' => $this->faker->randomElement([
                 json_encode([
                     'mon' => '09:00-18:00',
                     'tue' => '09:00-18:00',
@@ -56,7 +56,7 @@ class EstablishmentFactory extends Factory
                     'sun' => null,
                 ]),
             ]),
-            'capacity' => $this->faker->optional()->numberBetween(10, 500),
+            'capacity' => $this->faker->numberBetween(10, 500),
 
             // Control
             'featured' => $this->faker->boolean(10),

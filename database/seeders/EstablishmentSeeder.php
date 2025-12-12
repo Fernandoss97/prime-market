@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Establishment;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,7 @@ class EstablishmentSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+
+        Establishment::factory()->count(10)->create();
     }
 }
