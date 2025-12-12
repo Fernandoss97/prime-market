@@ -19,7 +19,10 @@ class CustomerFactory extends Factory
     {
         return [
             'phone' => $this->faker->phoneNumber(),
+            'surname' => $this->faker->lastName(),
             'user_id' => User::factory(),
+            'cpf' => $this->faker->unique()->numerify('###########'),
+            'birth_date' => $this->faker->date(),
         ];
     }
 }
