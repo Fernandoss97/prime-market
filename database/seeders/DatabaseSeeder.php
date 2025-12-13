@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $sellerRole = Role::create(['name' => 'seller']);
+        $adminRole = Role::create(['name' => 'admin']);
 
         $user = User::factory()->create([
             'id' => 1,
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->assignRole($sellerRole);
+        $user->assignRole($adminRole);
 
         Seller::factory()->create([
             'user_id' => $user->id,

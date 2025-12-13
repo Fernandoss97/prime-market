@@ -16,10 +16,7 @@ class EstablishmentsTable
     {
         return $table
             ->columns([
-                TextColumn::make('seller_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('category_id')
+                TextColumn::make('id')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('name')
@@ -31,51 +28,7 @@ class EstablishmentsTable
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
-                TextColumn::make('website')
-                    ->searchable(),
-                TextColumn::make('address')
-                    ->searchable(),
-                TextColumn::make('number')
-                    ->searchable(),
-                TextColumn::make('complement')
-                    ->searchable(),
-                TextColumn::make('neighborhood')
-                    ->searchable(),
-                TextColumn::make('city')
-                    ->searchable(),
-                TextColumn::make('state')
-                    ->searchable(),
-                TextColumn::make('zip_code')
-                    ->searchable(),
-                TextColumn::make('latitude')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('longitude')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('logo')
-                    ->searchable(),
-                TextColumn::make('cover_photo')
-                    ->searchable(),
-                TextColumn::make('capacity')
-                    ->numeric()
-                    ->sortable(),
-                IconColumn::make('featured')
-                    ->boolean(),
-                TextColumn::make('average_rating')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('total_reviews')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+
             ])
             ->filters([
                 //
