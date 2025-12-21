@@ -2,6 +2,7 @@
 
 use App\Actions\Category\CreateCategory;
 use App\Actions\Category\UpdateCategory;
+
 use function Pest\Laravel\assertDatabaseHas;
 
 test('should update a category', function () {
@@ -38,7 +39,7 @@ test('should not be able to update to a existing slug', function () {
         'slug' => 'second-slug',
     ]);
 
-    expect(fn() => UpdateCategory::run([
+    expect(fn () => UpdateCategory::run([
         'id' => $secondCategory->id,
         'name' => 'Updated Name',
         'slug' => 'first-slug', // Tentando usar o slug da primeira categoria

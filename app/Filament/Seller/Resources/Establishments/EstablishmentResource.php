@@ -12,13 +12,12 @@ use App\Filament\Seller\Resources\Establishments\Schemas\EstablishmentInfolist;
 use App\Filament\Seller\Resources\Establishments\Tables\EstablishmentsTable;
 use App\Models\Establishment;
 use BackedEnum;
-use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class EstablishmentResource extends Resource
 {

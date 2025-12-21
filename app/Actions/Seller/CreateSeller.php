@@ -15,11 +15,11 @@ class CreateSeller
     public function rules(): array
     {
         return [
-            'name'      => ['required', 'string', 'max:255'],
-            'email'     => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'password'  => ['required', 'string', 'min:8'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'string', 'min:8'],
             'store_name' => ['required', 'string', 'max:255'],
-            'document'  => ['required', 'string', 'unique:sellers,document'],
+            'document' => ['required', 'string', 'unique:sellers,document'],
         ];
     }
 
@@ -33,17 +33,17 @@ class CreateSeller
 
         /** @var User */
         $user = User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
+            'name' => $data['name'],
+            'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
 
         $user->assignRole('seller');
 
         return Seller::create([
-            'user_id'    => $user->id,
+            'user_id' => $user->id,
             'store_name' => $data['store_name'],
-            'document'   => $data['document'],
+            'document' => $data['document'],
         ]);
     }
 }

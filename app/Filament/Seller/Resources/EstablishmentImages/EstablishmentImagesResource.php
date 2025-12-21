@@ -10,7 +10,6 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -40,7 +39,7 @@ class EstablishmentImagesResource extends Resource
                 TextInput::make('description'),
                 FileUpload::make('images')
                     ->nullable()
-                    ->multiple()
+                    ->multiple(),
             ]);
     }
 

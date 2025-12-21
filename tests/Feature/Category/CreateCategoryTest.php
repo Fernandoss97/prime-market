@@ -23,7 +23,7 @@ test('should create a category', function () {
 });
 
 test('name should be required', function () {
-    expect(fn() => CreateCategory::run([
+    expect(fn () => CreateCategory::run([
         'slug' => 'some-slug',
     ]))->toThrow(
         Illuminate\Validation\ValidationException::class,
@@ -37,7 +37,7 @@ test('slug should be unique', function () {
         'slug' => 'books',
     ]);
 
-    expect(fn() => CreateCategory::run([
+    expect(fn () => CreateCategory::run([
         'name' => 'Another Books',
         'slug' => 'books',
     ]))->toThrow(
@@ -47,7 +47,7 @@ test('slug should be unique', function () {
 });
 
 test('slug should be required', function () {
-    expect(fn() => CreateCategory::run([
+    expect(fn () => CreateCategory::run([
         'name' => 'Some Category',
     ]))->toThrow(
         ValidationException::class,

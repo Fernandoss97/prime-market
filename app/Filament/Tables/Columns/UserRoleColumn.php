@@ -8,6 +8,7 @@ use Filament\Tables\Columns\Column;
 class UserRoleColumn extends Column
 {
     protected string $view = 'filament.tables.columns.user-role-column';
+
     protected ?User $user = null;
 
     public function getUserRoles(): ?User

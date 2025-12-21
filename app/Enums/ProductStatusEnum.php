@@ -11,12 +11,12 @@ use Spatie\Enum\Laravel\Enum;
  */
 final class ProductStatusEnum extends Enum
 {
-  protected static function values(): array
-  {
-    return [
-      'available' => 'available',
-      'lowStock' => 'low_stock',
-      'outOfStock' => 'out_of_stock',
-    ];
-  }
+    protected static function values(): array
+    {
+        return [
+            'available' => 'available',
+            'lowStock' => 'low_stock',
+            'outOfStock' => 'out_of_stock',
+        ];
+    }
 }

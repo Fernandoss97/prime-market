@@ -25,7 +25,7 @@ class SellerResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    //protected static ?string $recordTitleAttribute = 'seller';
+    // protected static ?string $recordTitleAttribute = 'seller';
 
     public static function form(Schema $schema): Schema
     {
@@ -75,7 +75,7 @@ class SellerResource extends Resource
                     ->searchable(),
                 TextColumn::make('status')
                     ->badge()
-                    ->color(fn(string $state): string => match ($state) {
+                    ->color(fn (string $state): string => match ($state) {
                         'approved' => 'success',
                         'rejected' => 'danger',
                         'pending' => 'warning',

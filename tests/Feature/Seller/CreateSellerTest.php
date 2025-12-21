@@ -37,7 +37,7 @@ it('should create a seller', function () {
 });
 
 test('name should be required', function () {
-    expect(fn() => CreateSeller::run([
+    expect(fn () => CreateSeller::run([
         'name' => '',
         'email' => 'abc',
     ]))->toThrow(
@@ -55,7 +55,7 @@ test('email should be unique', function () {
         'document' => '12345678900',
     ]);
 
-    expect(fn() => CreateSeller::run([
+    expect(fn () => CreateSeller::run([
         'name' => 'John Doe',
         'email' => 'john@example.com',
         'password' => 'password',
@@ -76,7 +76,7 @@ test('document should be unique', function () {
         'document' => '12345678900',
     ]);
 
-    expect(fn() => CreateSeller::run([
+    expect(fn () => CreateSeller::run([
         'name' => 'John Doe',
         'email' => 'john@example.com',
         'password' => 'password',
@@ -88,7 +88,7 @@ test('document should be unique', function () {
 });
 
 test('store_name should be required', function () {
-    expect(fn() => CreateSeller::run([
+    expect(fn () => CreateSeller::run([
         'name' => 'John Doe',
         'email' => 'john@example.com',
         'password' => 'password',
@@ -99,7 +99,7 @@ test('store_name should be required', function () {
 });
 
 test('document should be required', function () {
-    expect(fn() => CreateSeller::run([
+    expect(fn () => CreateSeller::run([
         'name' => 'John Doe',
         'email' => 'john@example.com',
         'password' => 'password',
@@ -112,7 +112,7 @@ test('document should be required', function () {
 });
 
 test('password should be required', function () {
-    expect(fn() => CreateSeller::run([
+    expect(fn () => CreateSeller::run([
         'name' => 'John Doe',
         'email' => 'john@example.com',
         'password' => '',

@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class MakeService extends Command
 {
     protected $signature = 'make:service {name : The service class name}';
+
     protected $description = 'Create a new Service class';
 
     public function handle()
@@ -18,6 +19,7 @@ class MakeService extends Command
 
         if (File::exists($path)) {
             $this->error("Service '{$name}' already exists.");
+
             return Command::FAILURE;
         }
 

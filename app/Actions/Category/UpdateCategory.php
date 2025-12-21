@@ -16,7 +16,7 @@ class UpdateCategory
         return [
             'id' => 'required|exists:categories,id',
             'name' => 'sometimes|string|max:255',
-            'slug' => 'sometimes|string|max:255|unique:categories,slug,' . ($data['id'] ?? 'NULL'),
+            'slug' => 'sometimes|string|max:255|unique:categories,slug,'.($data['id'] ?? 'NULL'),
         ];
     }
 

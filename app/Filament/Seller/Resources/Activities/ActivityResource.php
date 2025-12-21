@@ -12,8 +12,8 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
@@ -149,11 +149,15 @@ class ActivityResource extends Resource
                     ->money()
                     ->sortable(),
                 TextColumn::make('child_price')
-                    ->money()
-                    ->sortable(),
+                    ->money('BRL', locale: 'pt_BR'),
+
                 ImageColumn::make('main_image_path'),
                 TextColumn::make('status')
-                    ->badge(),
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'active' => 'success',
+                        'inactive' => 'danger',
+                    }),
                 TextColumn::make('average_rating')
                     ->numeric()
                     ->sortable(),

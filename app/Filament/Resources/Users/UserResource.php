@@ -10,15 +10,12 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
-use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\TagsColumn;
 use Filament\Tables\Table;
 
 class UserResource extends Resource
@@ -27,7 +24,7 @@ class UserResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    //protected static ?string $recordTitleAttribute = 'User';
+    // protected static ?string $recordTitleAttribute = 'User';
 
     public static function form(Schema $schema): Schema
     {
@@ -82,7 +79,7 @@ class UserResource extends Resource
                     ->searchable(),
                 TextColumn::make('roles')
                     ->badge()
-                    ->getStateUsing(fn(User $record): array => $record->getRoleNames()->toArray())
+                    ->getStateUsing(fn (User $record): array => $record->getRoleNames()->toArray()),
             ])
             ->filters([
                 //
