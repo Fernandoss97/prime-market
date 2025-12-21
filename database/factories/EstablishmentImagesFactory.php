@@ -20,7 +20,7 @@ class EstablishmentImagesFactory extends Factory
         return [
             'establishment_id' => Establishment::factory(),
             'url' => $this->faker->imageUrl(800, 600, 'establishments', true),
-            'description' => $this->faker->optional()->sentence(),
+            'description' => $this->faker->sentence(),
             'order' => $this->faker->numberBetween(0, 10),
             'uploaded_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
         ];
