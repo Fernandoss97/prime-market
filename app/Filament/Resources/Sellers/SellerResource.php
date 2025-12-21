@@ -80,8 +80,8 @@ class SellerResource extends Resource
                         'rejected' => 'danger',
                         'pending' => 'warning',
                         default => 'primary',
-                    })
-                    ->sortable(),
+                    }),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

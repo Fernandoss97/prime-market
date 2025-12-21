@@ -9,4 +9,9 @@ class Activity extends Model
 {
     /** @use HasFactory<\Database\Factories\ActivityFactory> */
     use HasFactory;
+
+    public function establishment()
+    {
+        return $this->belongsTo(Establishment::class);
+    }
 }

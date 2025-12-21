@@ -2,7 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Activity;
+use App\Models\ActivityCategory;
 use App\Models\Customer;
+use App\Models\Establishment;
+use App\Models\EstablishmentCategory;
+use App\Models\EstablishmentImages;
 use App\Models\Product;
 use App\Models\Seller;
 use App\Models\User;
@@ -52,6 +57,22 @@ class DatabaseSeeder extends Seeder
             'seller_id' => Seller::first()->id,
         ]);
 
+        EstablishmentCategory::factory()->count(5)->create();
+
+        Establishment::factory()->count(5)->create([
+            'seller_id' => Seller::first()->id,
+        ]);
+
+        EstablishmentImages::factory()->count(5)->create(
+            ['establishment_id' => Establishment::first()->id]
+        );
+
+        ActivityCategory::factory()->count(5)->create();
+
+        Activity::factory()->count(20)->create([
+            'establishment_id' => Establishment::first()->id,
+        ]);
+
         $this->call([
             CategorySeeder::class,
             SellerSeeder::class,
@@ -60,6 +81,7 @@ class DatabaseSeeder extends Seeder
             EstablishmentCategorySeeder::class,
             EstablishmentSeeder::class,
             ActivityCategorySeeder::class,
+            EstablishmentImagesSeeder::class,
         ]);
     }
 }
