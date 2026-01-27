@@ -3,10 +3,12 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\SellerDashboard;
+use App\Models\Seller;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -32,13 +34,12 @@ class SellerPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Seller/Resources'), for: 'App\Filament\Seller\Resources')
             ->discoverPages(in: app_path('Filament/Seller/Pages'), for: 'App\Filament\Seller\Pages')
             ->pages([
-                SellerDashboard::class,
+                Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Seller/Widgets'), for: 'App\Filament\Seller\Widgets')
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
-            ])
+                /* AccountWidget::class,
+                FilamentInfoWidget::class, */])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
